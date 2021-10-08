@@ -1,13 +1,9 @@
-﻿<%@page import="java.util.List"%>
-<%@page import="com.douzone.emaillist.vo.EmaillistVO"%>
-<%@page import="com.douzone.emaillist.dao.EmaillistDAO"%>
+﻿<%@ page import="java.util.List"%>
+<%@ page import="com.douzone.emaillist.vo.EmaillistVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	EmaillistDAO dao = new EmaillistDAO();
-	List<EmaillistVO> list = dao.findAll();
-
+	List<EmaillistVO> list = (List<EmaillistVO>)request.getAttribute("list");
 %>
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -18,7 +14,7 @@
 	<p>입력한 정보 내역입니다.</p>
 	<!-- 메일정보 리스트 -->
 	<%
-		for(EmaillistVO vo :list) {
+		for(EmaillistVO vo : list) {
 	%>
 		<table border="1" cellpadding="5" cellspacing="2">
 			<tr>
@@ -34,12 +30,12 @@
 				<td><%=vo.getEmail() %></td>
 			</tr>
 		</table>
-	<br>
+		<br>
 	<%
-		}	
+		}
 	%>
 	<p>
-		<a href="form.jsp">추가메일 등록</a>
+		<a href="/emaillist02/el?a=form">추가메일 등록</a>
 	</p>
 	<br>
 </body>
